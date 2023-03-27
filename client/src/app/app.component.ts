@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { AccountService } from './_service/account.service';
 import { Component, OnInit } from '@angular/core';
+import { User } from './_models/user';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +11,17 @@ export class AppComponent implements OnInit {
   title = 'Dating app';
   users: any;
 
-  constructor( private http: HttpClient){}
+  constructor(private accountService: AccountService){}
   ngOnInit(): void {
-    this.http.get('https://localhost:5001/api/users').subscribe({
-      next: response => this.users = response,
-      error: err => console.log(err),
-      complete: () => console.log('Request has completed')
-    })
+    this.setCurrentUser();
+
+  }
+
+  //讀取localStorage的user資料來判斷是否登入
+  setCurrentUser(){
+    const userString = localStorage.getItem('user');
+    if(!userString) return;
+    const user: User = JSON.parse(userString);
+    this.accountService.setCurrentUser(user);
   }
 }
