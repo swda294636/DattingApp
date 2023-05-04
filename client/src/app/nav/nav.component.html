@@ -3,21 +3,24 @@
   <div class="container">
     <a class="navbar-brand"  routerLink="/" routerLinkActive="active">Dating App</a>
 <!-- 登入才顯示選單 -->
-    <ng-container *ngIf="accountService.currentUser$ | async">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/members"routerLinkActive="active">Matches</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/lists" routerLinkActive="active">Lists</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/messages" routerLinkActive="active">Messages</a>
-        <li class="nav-item">
-          <a class="nav-link" (click)="logout()">Logout</a>
-        </li>
+        <ng-container *ngIf="accountService.currentUser$ | async">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/members"routerLinkActive="active">Matches</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/lists" routerLinkActive="active">Lists</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/messages" routerLinkActive="active">Messages</a>
+          <li class="nav-item">
+            <a class="nav-link" (click)="logout()">Logout</a>
+          </li>
+        </ng-container>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/errors" routerLinkActive="active">Errors</a>
+          </li>
       </ul>
-    </ng-container>
     <!-- 建立下拉選單 -->
     <!-- 使用ngx-bootstrap的dropdown、dropdownToggle -->
     <!-- text-decoration-none 移除下底線 -->

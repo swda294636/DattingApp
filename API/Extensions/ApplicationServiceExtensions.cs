@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.Data;
 using API.Interface;
 using API.Service;
@@ -21,6 +17,8 @@ namespace API.Extensions
             Services.AddCors();
             
             Services.AddScoped<ITokenService,TokenService>();
+            Services.AddScoped<IUserRepository, UserRepository>();
+            Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             return Services;
         }
