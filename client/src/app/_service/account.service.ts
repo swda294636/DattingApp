@@ -2,13 +2,14 @@ import { User } from './../_models/user';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
-  baseUrl = "https://localhost:5001/api/";
-
+  baseUrl = environment.apiUrl;
+  
   //使用BehaviorSubject來建立一個User物件的Observable
   private currentUserSource = new BehaviorSubject<User | null>(null);
   currentUser$ = this.currentUserSource.asObservable();
